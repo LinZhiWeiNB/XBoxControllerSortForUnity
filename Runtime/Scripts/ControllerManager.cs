@@ -25,6 +25,8 @@ namespace Reborn.XboxController
         private int confirmChake = 0;
         
         private int confirmState = 0;
+
+        private Action OnFinish;
         
         #endregion
         
@@ -62,10 +64,11 @@ namespace Reborn.XboxController
         /// 打开手柄排序界面
         /// </summary>
         /// <param name="PlayerNum">需要排序的玩家人数</param>
-        public void OpenControllerSortPanel(int playerNum)
+        public void OpenControllerSortPanel(int playerNum,Action callback = null)
         {
             if(IsControllerSorting)
                 return;
+            OnFinish = callback;
             confirmState = 0;
             confirmChake = 0;
             for (int i = 0; i < playerNum; i++)
@@ -213,8 +216,8 @@ namespace Reborn.XboxController
                    {
                        Canvas[i].ClosePanel();
                    }
-
                    IsControllerSorting = false;
+                   OnFinish?.Invoke();
                }
             }
 
