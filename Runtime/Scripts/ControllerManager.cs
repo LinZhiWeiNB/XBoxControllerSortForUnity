@@ -276,6 +276,9 @@ namespace Reborn.XboxController
 
         public bool GetKeyDown(XboxControllerKey key, int playerIndex = 0)
         {
+            if (IsControllerSorting)
+                return false;
+            
             if (RealIndex.Count <= playerIndex) return false;
             if (RealIndex[playerIndex] < 0) return false;
 
@@ -286,6 +289,9 @@ namespace Reborn.XboxController
 
         public bool GetKeyUp(XboxControllerKey key, int playerIndex = 0)
         {
+            if (IsControllerSorting)
+                return false;
+            
             if (RealIndex.Count <= playerIndex) return false;
             if (RealIndex[playerIndex] < 0) return false;
 
@@ -296,6 +302,9 @@ namespace Reborn.XboxController
 
         public bool GetKey(XboxControllerKey key, int playerIndex = 0)
         {
+            if (IsControllerSorting)
+                return false;
+            
             if (RealIndex.Count <= playerIndex) return false;
             if (RealIndex[playerIndex] < 0) return false;
 
@@ -306,6 +315,9 @@ namespace Reborn.XboxController
 
         public float GetAxisValue(XboxControllerKey key, int playerIndex = 0)
         {
+            if (IsControllerSorting)
+                return 0;
+            
             if (RealIndex.Count <= playerIndex) return 0;
             if (RealIndex[playerIndex] < 0) return 0;
 
@@ -317,6 +329,9 @@ namespace Reborn.XboxController
 
         public float GetHorizontalValue(int playerIndex = 0, bool isLeftStick = true)
         {
+            if (IsControllerSorting)
+                return 0;
+            
             if (RealIndex.Count <= playerIndex) return 0;
             if (RealIndex[playerIndex] < 0) return 0;
 
@@ -328,6 +343,9 @@ namespace Reborn.XboxController
 
         public float GetVerticalValue(int playerIndex = 0, bool isLeftStick = true)
         {
+            if (IsControllerSorting)
+                return 0;
+            
             if (RealIndex.Count <= playerIndex) return 0;
             if (RealIndex[playerIndex] < 0) return 0;
 
