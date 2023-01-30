@@ -21,7 +21,6 @@ namespace Reborn.XboxController
       
         private bool IsControllerSorting = false;
         private Delayer delayer;
-        private int ConfirmCounter = 0;
         
         #endregion
         
@@ -65,7 +64,6 @@ namespace Reborn.XboxController
                 return;
             
             ClearAllMotorSpeed();
-            ConfirmCounter = playerNum;
             RealIndex = new List<int>();
             for (int i = 0; i < playerNum; i++)
             {
@@ -149,8 +147,6 @@ namespace Reborn.XboxController
                         {
                             if (RealIndex[j] == i)
                             {
-                                if(Canvas[k].CurrentState ==PlayerGridState.Confirmed)
-                                    break;
                                 
                                 var index = j;
                                 
@@ -166,7 +162,6 @@ namespace Reborn.XboxController
                                 {
                                     SetMotorSpeeds(0, 0, index);
                                 });
-                                ConfirmCounter--;
                                 break;
                             }
                         }
@@ -194,7 +189,6 @@ namespace Reborn.XboxController
                                 {
                                     _SetMotorSpeeds(0, 0, index);
                                 });
-                                ConfirmCounter++;
                                 break;
                             }
                         }
@@ -202,14 +196,19 @@ namespace Reborn.XboxController
 
                 }
 
-                if (ConfirmCounter == 0)
+                for (var i = 0; i < RealIndex.Count; i++)
                 {
-                    for (var i = 0; i < Canvas.Length; i++)
+                    if (RealIndex[i] < 0)
                     {
-                        Canvas[i].ClosePanel();
+                        return;
                     }
-                    IsControllerSorting = false;
                 }
+                
+                for (var i = 0; i < Canvas.Length; i++)
+                {
+                    Canvas[i].ClosePanel();
+                }
+                IsControllerSorting = false;
             }
 
            
