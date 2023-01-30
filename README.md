@@ -1,4 +1,4 @@
-# 蜂萌Xbox手柄调度模块
+# Xbox手柄调度模块
 ## 预览
 ![image](ReadMeImage/preview.png)
 ## 开始使用
@@ -13,39 +13,41 @@
 
     2.直接在github中下载zip压缩包，解压后放在项目的packages目录中
 
-### 3）在Project面板中的Packages列表里找到【蜂萌Xbox手柄调度模块】> Runtime > Prefabs 中的预制体【XboxControllerManager】拖入场景中。
+### 3）在Project面板中的Packages列表里找到【Xbox手柄调度模块】> Runtime > Prefabs 中的预制体【XboxControllerManager】拖入场景中。
     注：【XboxControllerManager】预制体默认包含一个向Display0渲染的UI界面，如果项目包含多个Display，可以复制并修改Canvas的TargetDisplay设置。
 ### 4）在需要使用手柄排序界面的时候调用以下代码
 ```csharp
-Carinnor.XboxController.ControllerManager(int PlayerNum);
+Reborn.XboxController.ControllerManager(int PlayerNum);
 ```
 ### 5）在需要监听手柄按键时调用以下相关函数
 ```csharp
+using Reborn.XboxController
+
 //按键按下时
-GetKeyDown(XboxControllerKey key, int playerIndex);
+ControllerManager.Instance.GetKeyDown(XboxControllerKey key, int playerIndex);
 
 //按键抬起
-GetKeyUp(XboxControllerKey key, int playerIndex);
+ControllerManager.Instance.GetKeyUp(XboxControllerKey key, int playerIndex);
 
 //按键按住
-GetKey(XboxControllerKey key, int playerIndex);
+ControllerManager.Instance.GetKey(XboxControllerKey key, int playerIndex);
 
 //轴的数值
-GetAxisValue(XboxControllerKey key, int playerIndex);
+ControllerManager.Instance.GetAxisValue(XboxControllerKey key, int playerIndex);
 
 //水平轴数值
-GetHorizontalValue(int playerIndex, bool isLeftStick);
+ControllerManager.Instance.GetHorizontalValue(int playerIndex, bool isLeftStick);
 
 //垂直轴数值
-GetVerticalValue(int playerIndex, bool isLeftStick);
+ControllerManager.Instance.GetVerticalValue(int playerIndex, bool isLeftStick);
 
 //设置马达震度速度，仅pc生效
-SetMotorSpeeds(float left, float right, int playerIndex);
+ControllerManager.Instance.SetMotorSpeeds(float left, float right, int playerIndex);
 
 //清除所有马达震动
-ClearAllMotorSpeed();
+ControllerManager.Instance.ClearAllMotorSpeed();
 
 
 //额外功能
-RealIndex //存储了真实手柄顺序，比如第0个玩家目前使用的手柄索引即 RealIndex[0] 可以由此推测玩家使用的屏幕
+ControllerManager.Instance.RealIndex //存储了真实手柄顺序，比如第0个玩家目前使用的手柄索引即 RealIndex[0] 可以由此推测玩家使用的屏幕
 ```

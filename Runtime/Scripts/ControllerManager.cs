@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.XInput;
 
-namespace Carinnor.XboxController
+namespace Reborn.XboxController
 {
     public class ControllerManager : MonoBehaviour
     {

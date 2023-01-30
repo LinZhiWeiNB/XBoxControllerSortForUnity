@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Carinnor.XboxController
+namespace Reborn.XboxController
 {
     public class ControllerSortCanvas : MonoBehaviour
     {

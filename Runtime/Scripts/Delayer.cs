@@ -7,7 +7,7 @@ using System.Collections;
 using System.Reflection;
 using UnityEngine;
 
-namespace Carinnor.XboxController
+namespace Reborn.XboxController
 { 
     class Delayer
      {
