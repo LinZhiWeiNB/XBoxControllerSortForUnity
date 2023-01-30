@@ -1,6 +1,6 @@
 # 蜂萌Xbox手柄调度模块
 ## 预览
-![image](ReadMeImage\preview.png)
+![image](ReadMeImage/preview.png)
 ## 开始使用
 ### 1）Editor > ProjectSettings > Player > OtherSettings > ActiveInputHanding 选项设置为【InputSystemPackage】或者【Both】。
 ### 2) Window > PackageManager 中确定已安装InputSystem
