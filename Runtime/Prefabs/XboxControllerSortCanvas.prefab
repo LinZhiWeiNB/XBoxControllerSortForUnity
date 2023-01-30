@@ -635,9 +635,9 @@ GameObject:
   - component: {fileID: 5094381304399402079}
   - component: {fileID: 5094381304399402076}
   - component: {fileID: 5094381304399402077}
-  - component: {fileID: 5094381304399402074}
+  - component: {fileID: 1124476078449497144}
   m_Layer: 5
-  m_Name: XboxControllerManagerCanvas
+  m_Name: XboxControllerSortCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5094381304399402074
+--- !u!114 &1124476078449497144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -734,10 +734,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5094381304399402075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56092c187c728234e8ff375a61da6fce, type: 3}
+  m_Script: {fileID: 11500000, guid: f6237cc6d0600cb4499cbc062c8f9a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DevicesCount: 0
 --- !u!1 &5094381304471303685
 GameObject:
   m_ObjectHideFlags: 0

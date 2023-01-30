@@ -4,7 +4,8 @@
 ## 开始使用
 ### 1）Editor > ProjectSettings > Player > OtherSettings > ActiveInputHanding 选项设置为【InputSystemPackage】或者【Both】。
 ### 2) Window > PackageManager 中确定已安装InputSystem
-### 3）在Project面板中的Packages列表里找到【蜂萌Xbox手柄调度模块】> Runtime 中的预制体，拖入游戏的第0个场景中。
+### 3）在Project面板中的Packages列表里找到【蜂萌Xbox手柄调度模块】> Runtime > Prefabs 中的预制体【XboxControllerManager】拖入场景中。
+    注：【XboxControllerManager】预制体默认包含一个向Display0渲染的UI界面，如果项目包含多个Display，可以复制并修改Canvas的TargetDisplay设置。
 ### 4）在需要使用手柄排序界面的时候调用以下代码
 ```csharp
 Carinnor.XboxController.ControllerManager(int PlayerNum);

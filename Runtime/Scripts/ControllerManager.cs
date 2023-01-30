@@ -18,8 +18,7 @@ namespace Carinnor.XboxController
         int DevicesCount = 0;
         List<XInputController> xinputs = new List<XInputController>();
         List<int> xinputIds = new List<int>();
-        private Transform Panel;
-        private Transform[] PLayerGrids = new Transform[4];
+      
         private bool IsControllerSorting = false;
         private Delayer delayer;
         private int ConfirmCounter = 0;
@@ -32,7 +31,8 @@ namespace Carinnor.XboxController
         /// 真实的手柄索引
         /// </summary>
         public List<int> RealIndex = new List<int>();
-        
+
+        public ControllerSortCanvas[] Canvas;
         
         private void Awake()
         {
@@ -43,80 +43,41 @@ namespace Carinnor.XboxController
             }
 
             Instance = this;
+            Canvas = GetComponentsInChildren<ControllerSortCanvas>();
+            
             delayer = new Delayer(this);;
-            Panel = transform.GetChild(0);
-            Panel.gameObject.SetActive(false);
-            for (int i = 0; i < 4; i++)
-            {
-                PLayerGrids[i] = Panel.Find("Players").GetChild(i);
-            }
+           
 
             DontDestroyOnLoad(gameObject);
             RefreshXboxDevice();
             SortAsDefault();
 
             DevicesCount = InputSystem.devices.Count;
-            OpenControllerSortPanel(4);
         }
         
         /// <summary>
         /// 打开手柄排序界面
         /// </summary>
         /// <param name="PlayerNum">需要排序的玩家人数</param>
-        public void OpenControllerSortPanel(int PlayerNum)
+        public void OpenControllerSortPanel(int playerNum)
         {
             if(IsControllerSorting)
                 return;
             
             ClearAllMotorSpeed();
-            ConfirmCounter = PlayerNum;
+            ConfirmCounter = playerNum;
             RealIndex = new List<int>();
-            for (int i = 0; i < PlayerNum; i++)
+            for (int i = 0; i < playerNum; i++)
             {
-                PLayerGrids[i].gameObject.SetActive(true);
-                SwitchPlayerGridState(PlayerGridState.Empty, PLayerGrids[i]);
                 RealIndex.Add(-1);
             }
-
-            for (int i = PlayerNum; i < 4; i++)
-            {
-                PLayerGrids[i].gameObject.SetActive(false);
-            }
-
             IsControllerSorting = true;
-            Panel.gameObject.SetActive(true);
-        }
-
-        enum PlayerGridState
-        {
-            Empty,
-            Touched,
-            Confirmed,
-        }
-
-        private void SwitchPlayerGridState(PlayerGridState state, Transform Grid)
-        {
-            switch (state)
+            for (var i = 0; i < Canvas.Length; i++)
             {
-                case PlayerGridState.Empty:
-                    Grid.GetChild(0).gameObject.SetActive(false);
-                    Grid.GetChild(2).gameObject.SetActive(false);
-                    Grid.GetChild(3).gameObject.SetActive(true);
-                    break;
-                case PlayerGridState.Touched:
-                    Grid.GetChild(0).gameObject.SetActive(false);
-                    Grid.GetChild(2).gameObject.SetActive(true);
-                    Grid.GetChild(3).gameObject.SetActive(false);
-                    break;
-                case PlayerGridState.Confirmed:
-                    Grid.GetChild(0).gameObject.SetActive(true);
-                    Grid.GetChild(2).gameObject.SetActive(true);
-                    Grid.GetChild(3).gameObject.SetActive(false);
-                    break;
+                Canvas[i].ShowPanel(playerNum);
             }
         }
-
-
+        
 
         private void SortAsDefault()
         {
@@ -165,7 +126,11 @@ namespace Carinnor.XboxController
                                 var index = j;
                                 
                                 //图标显示
-                                SwitchPlayerGridState(PlayerGridState.Touched,PLayerGrids[index]);
+                                for (var k = 0; k < Canvas.Length; k++)
+                                {
+                                    Canvas[k].SwitchPlayerGridState(PlayerGridState.Touched,index);
+                                }
+                                
 
                                 //震动反馈
                                 SetMotorSpeeds(1, 1, index);
@@ -187,7 +152,10 @@ namespace Carinnor.XboxController
                                 var index = j;
                                 
                                 //图标显示
-                                SwitchPlayerGridState(PlayerGridState.Confirmed,PLayerGrids[index]);
+                                for (var k = 0; k < Canvas.Length; k++)
+                                {
+                                    Canvas[k].SwitchPlayerGridState(PlayerGridState.Confirmed,index);
+                                }
 
                                 //震动反馈
                                 SetMotorSpeeds(1, 1, index);
@@ -210,9 +178,11 @@ namespace Carinnor.XboxController
                                
                                 
                                 RealIndex[j] = -1;
-                                
                                 //图标显示
-                                SwitchPlayerGridState(PlayerGridState.Empty,PLayerGrids[j]);
+                                for (var k = 0; k < Canvas.Length; k++)
+                                {
+                                    Canvas[k].SwitchPlayerGridState(PlayerGridState.Empty,j);
+                                }
 
                                 var index = i;
                                 //震动反馈
@@ -231,7 +201,10 @@ namespace Carinnor.XboxController
 
                 if (ConfirmCounter == 0)
                 {
-                    Panel.gameObject.SetActive(false);
+                    for (var i = 0; i < Canvas.Length; i++)
+                    {
+                        Canvas[i].ClosePanel();
+                    }
                     IsControllerSorting = false;
                 }
             }
