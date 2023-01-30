@@ -3,7 +3,7 @@
 ![image](ReadMeImage/preview.png)
 ## 开始使用
 ### 1）Editor > ProjectSettings > Player > OtherSettings > ActiveInputHanding 选项设置为【InputSystemPackage】或者【Both】
-### 2) Window > PackageManager 中确定已安装InputSystem++
+### 2) Window > PackageManager 中确定已安装InputSystem
 #### 2.5)可以使用以下两种方法之一安装本包。
 
     1.Window > PackageManager > 左上角+号 > add package from git URL 输入
