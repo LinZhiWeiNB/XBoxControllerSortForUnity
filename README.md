@@ -21,7 +21,7 @@ Reborn.XboxController.ControllerManager(int PlayerNum);
 ```
 ### 5）在需要监听手柄按键时调用以下相关函数
 ```csharp
-using Reborn.XboxController
+using Reborn.XboxController;
 
 //按键按下时
 ControllerManager.Instance.GetKeyDown(XboxControllerKey key, int playerIndex);
