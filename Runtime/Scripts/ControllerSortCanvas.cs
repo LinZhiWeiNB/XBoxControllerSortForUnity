@@ -8,6 +8,8 @@ namespace Reborn.XboxController
     {
         private Transform Panel;
         private Transform[] PLayerGrids = new Transform[4];
+
+        public PlayerGridState CurrentState = PlayerGridState.Empty;
         // Start is called before the first frame update
         void Awake()
         {
@@ -38,6 +40,7 @@ namespace Reborn.XboxController
         
         public void SwitchPlayerGridState(PlayerGridState state, Transform grid)
         {
+            CurrentState = state;
             switch (state)
             {
                 case PlayerGridState.Empty:

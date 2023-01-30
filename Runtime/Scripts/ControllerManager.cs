@@ -149,6 +149,9 @@ namespace Reborn.XboxController
                         {
                             if (RealIndex[j] == i)
                             {
+                                if(Canvas[k].CurrentState ==PlayerGridState.Confirmed)
+                                    break;
+                                
                                 var index = j;
                                 
                                 //图标显示
