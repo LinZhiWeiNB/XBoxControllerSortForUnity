@@ -21,6 +21,10 @@ namespace Reborn.XboxController
       
         private bool IsControllerSorting = false;
         private Delayer delayer;
+
+        private int confirmChake = 0;
+        
+        private int confirmState = 0;
         
         #endregion
         
@@ -52,6 +56,8 @@ namespace Reborn.XboxController
             SortAsDefault();
 
             DevicesCount = InputSystem.devices.Count;
+            
+            OpenControllerSortPanel(2);
         }
         
         /// <summary>
@@ -62,7 +68,12 @@ namespace Reborn.XboxController
         {
             if(IsControllerSorting)
                 return;
-            
+            confirmState = 0;
+            confirmChake = 0;
+            for (int i = 0; i < playerNum; i++)
+            {
+                confirmChake += 1 << i;
+            }
             ClearAllMotorSpeed();
             RealIndex = new List<int>();
             for (int i = 0; i < playerNum; i++)
@@ -156,6 +167,8 @@ namespace Reborn.XboxController
                                     Canvas[k].SwitchPlayerGridState(PlayerGridState.Confirmed,index);
                                 }
 
+                                confirmState |= 1 << j;
+                                
                                 //震动反馈
                                 SetMotorSpeeds(1, 1, index);
                                 delayer.DelayExecute(0.2f, (a) =>
@@ -173,7 +186,7 @@ namespace Reborn.XboxController
                         {
                             if (RealIndex[j] == i)
                             {
-                               
+                                confirmState &= ~(1 << j);
                                 
                                 RealIndex[j] = -1;
                                 //图标显示
@@ -196,19 +209,15 @@ namespace Reborn.XboxController
 
                 }
 
-                for (var i = 0; i < RealIndex.Count; i++)
-                {
-                    if (RealIndex[i] < 0)
-                    {
-                        return;
-                    }
-                }
-                
-                for (var i = 0; i < Canvas.Length; i++)
-                {
-                    Canvas[i].ClosePanel();
-                }
-                IsControllerSorting = false;
+               if(confirmState == confirmChake)
+               {
+                   for (var i = 0; i < Canvas.Length; i++)
+                   {
+                       Canvas[i].ClosePanel();
+                   }
+
+                   IsControllerSorting = false;
+               }
             }
 
            
