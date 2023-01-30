@@ -2,8 +2,17 @@
 ## 预览
 ![image](ReadMeImage/preview.png)
 ## 开始使用
-### 1）Editor > ProjectSettings > Player > OtherSettings > ActiveInputHanding 选项设置为【InputSystemPackage】或者【Both】。
-### 2) Window > PackageManager 中确定已安装InputSystem
+### 1）Editor > ProjectSettings > Player > OtherSettings > ActiveInputHanding 选项设置为【InputSystemPackage】或者【Both】
+### 2) Window > PackageManager 中确定已安装InputSystem++
+#### 2.5)可以使用以下两种方法之一安装本包。
+
+    1.Window > PackageManager > 左上角+号 > add package from git URL 输入
+    git+https://github.com/LinZhiWeiNB/XBoxControllerSortForUnity
+    -优点：可以通过PackageManager快速更新本包
+    -缺点：需要安装git
+
+    2.直接在github中下载zip压缩包，解压后放在项目的packages目录中
+
 ### 3）在Project面板中的Packages列表里找到【蜂萌Xbox手柄调度模块】> Runtime > Prefabs 中的预制体【XboxControllerManager】拖入场景中。
     注：【XboxControllerManager】预制体默认包含一个向Display0渲染的UI界面，如果项目包含多个Display，可以复制并修改Canvas的TargetDisplay设置。
 ### 4）在需要使用手柄排序界面的时候调用以下代码
