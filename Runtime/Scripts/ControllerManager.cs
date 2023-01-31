@@ -89,7 +89,7 @@ namespace Reborn.XboxController
         }
         
 
-        private void SortAsDefault()
+        public void SortAsDefault()
         {
             xinputs.Sort((a, b) =>
             {
@@ -104,6 +104,7 @@ namespace Reborn.XboxController
                     return acharArray[^1] < bcharArray[^1] ? -1 : 1;
                 }
             });
+            RealIndex.Clear();
             for (int i = 0; i < xinputs.Count; i++)
             {
                 RealIndex.Add(i);
