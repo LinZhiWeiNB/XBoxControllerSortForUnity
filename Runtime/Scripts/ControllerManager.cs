@@ -127,7 +127,7 @@ namespace Reborn.XboxController
                     if (controller == null)
                         continue;
 
-                    if (controller.leftTrigger.isPressed && controller.rightTrigger.isPressed && !RealIndex.Contains(i))
+                    if (controller.leftShoulder.isPressed && controller.rightShoulder.isPressed && !RealIndex.Contains(i))
                     {
                         for (var j = 0; j < RealIndex.Count; j++)
                         {

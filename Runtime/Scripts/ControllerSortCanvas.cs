@@ -44,17 +44,17 @@ namespace Reborn.XboxController
             switch (state)
             {
                 case PlayerGridState.Empty:
-                    grid.GetChild(0).gameObject.SetActive(false);
+                    grid.GetChild(1).gameObject.SetActive(false);
                     grid.GetChild(2).gameObject.SetActive(false);
                     grid.GetChild(3).gameObject.SetActive(true);
                     break;
                 case PlayerGridState.Touched:
-                    grid.GetChild(0).gameObject.SetActive(false);
+                    grid.GetChild(1).gameObject.SetActive(false);
                     grid.GetChild(2).gameObject.SetActive(true);
                     grid.GetChild(3).gameObject.SetActive(false);
                     break;
                 case PlayerGridState.Confirmed:
-                    grid.GetChild(0).gameObject.SetActive(true);
+                    grid.GetChild(1).gameObject.SetActive(true);
                     grid.GetChild(2).gameObject.SetActive(true);
                     grid.GetChild(3).gameObject.SetActive(false);
                     break;
@@ -63,24 +63,7 @@ namespace Reborn.XboxController
         public void SwitchPlayerGridState(PlayerGridState state, int gridIndex)
         {
             var grid = PLayerGrids[gridIndex];
-            switch (state)
-            {
-                case PlayerGridState.Empty:
-                    grid.GetChild(0).gameObject.SetActive(false);
-                    grid.GetChild(2).gameObject.SetActive(false);
-                    grid.GetChild(3).gameObject.SetActive(true);
-                    break;
-                case PlayerGridState.Touched:
-                    grid.GetChild(0).gameObject.SetActive(false);
-                    grid.GetChild(2).gameObject.SetActive(true);
-                    grid.GetChild(3).gameObject.SetActive(false);
-                    break;
-                case PlayerGridState.Confirmed:
-                    grid.GetChild(0).gameObject.SetActive(true);
-                    grid.GetChild(2).gameObject.SetActive(true);
-                    grid.GetChild(3).gameObject.SetActive(false);
-                    break;
-            }
+            SwitchPlayerGridState(state, grid);
         }
 
         public void ClosePanel()
