@@ -17,7 +17,7 @@
     注：【XboxControllerManager】预制体默认包含一个向Display0渲染的UI界面，如果项目包含多个Display，可以复制并修改Canvas的TargetDisplay设置。
 ### 4）在需要使用手柄排序界面的时候调用以下代码
 ```csharp
-Reborn.XboxController.ControllerManager(int PlayerNum);
+Reborn.XboxController.ControllerManager.Instance.OpenControllerSortPanel(int PlayerNum);
 ```
 ### 5）在需要监听手柄按键时调用以下相关函数
 ```csharp
