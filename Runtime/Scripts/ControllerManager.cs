@@ -88,9 +88,13 @@ namespace Reborn.XboxController
             }
         }
         
-
+        /// <summary>
+        /// 默认排序，即p1对应1号手柄，p2对应2号手柄等
+        /// </summary>
         public void SortAsDefault()
         {
+            //根据手柄的名字实现默认排序
+            //通常情况下，系统默认分配顺序会体现在手柄名上
             xinputs.Sort((a, b) =>
             {
                 if (a.name.Length < b.name.Length)
@@ -101,7 +105,7 @@ namespace Reborn.XboxController
                 {
                     var acharArray = a.name.ToCharArray();
                     var bcharArray = b.name.ToCharArray();
-                    return acharArray[^1] < bcharArray[^1] ? -1 : 1;
+                    return acharArray[acharArray.Length - 1] < bcharArray[bcharArray.Length - 1] ? -1 : 1;
                 }
             });
             RealIndex.Clear();
