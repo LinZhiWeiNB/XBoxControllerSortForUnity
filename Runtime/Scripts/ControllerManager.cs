@@ -16,7 +16,7 @@ namespace Reborn.XboxController
         #region Private
 
         int DevicesCount = 0;
-        List<XInputController> xinputs = new List<XInputController>();
+        List<Gamepad> xinputs = new List<Gamepad>();
         List<int> xinputIds = new List<int>();
       
         private bool IsControllerSorting = false;
@@ -58,6 +58,8 @@ namespace Reborn.XboxController
             SortAsDefault();
 
             DevicesCount = InputSystem.devices.Count;
+            
+            OpenControllerSortPanel(2);
         }
         
         /// <summary>
@@ -229,7 +231,7 @@ namespace Reborn.XboxController
            
         }
 
-        private List<XInputController> _xinputs = new List<XInputController>();
+        private List<Gamepad> _xinputs = new List<Gamepad>();
 
         private void RefreshXboxDevice()
         {
@@ -242,6 +244,9 @@ namespace Reborn.XboxController
                 {
                     _xinputs.Add((XInputController)inputDevice);
                     Debug.Log(inputDevice.name);
+                }else if (inputDevice is BeitongAndroidGamePad)
+                {
+                    _xinputs.Add((BeitongAndroidGamePad)inputDevice);
                 }
             }
 
@@ -421,7 +426,7 @@ namespace Reborn.XboxController
                 controller.SetMotorSpeeds(left, right);
         }
 
-        ButtonControl TransBtn(XInputController controller, XboxControllerKey key)
+        ButtonControl TransBtn(Gamepad controller, XboxControllerKey key)
         {
             return key switch
             {
