@@ -59,7 +59,7 @@ namespace Reborn.XboxController
 
             DevicesCount = InputSystem.devices.Count;
             
-            OpenControllerSortPanel(2);
+            //OpenControllerSortPanel(2);
         }
         
         /// <summary>
