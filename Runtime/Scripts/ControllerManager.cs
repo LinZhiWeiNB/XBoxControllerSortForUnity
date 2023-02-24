@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Android;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.XInput;
 
@@ -59,7 +60,7 @@ namespace Reborn.XboxController
 
             DevicesCount = InputSystem.devices.Count;
             
-            //OpenControllerSortPanel(2);
+            OpenControllerSortPanel(2);
         }
         
         /// <summary>
@@ -244,9 +245,14 @@ namespace Reborn.XboxController
                 {
                     _xinputs.Add((XInputController)inputDevice);
                     Debug.Log(inputDevice.name);
-                }else if (inputDevice is BeitongAndroidGamePad)
+                }
+                else if (inputDevice is BeitongAndroidGamePad)
                 {
                     _xinputs.Add((BeitongAndroidGamePad)inputDevice);
+                }
+                else if (inputDevice is AndroidGamepad)
+                {
+                    _xinputs.Add((AndroidGamepad)inputDevice);
                 }
             }
 

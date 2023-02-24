@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Utilities;
 
-[StructLayout(LayoutKind.Explicit, Size = 32)]
+[StructLayout(LayoutKind.Explicit)]
 struct BeitongAndroidModeInputReport : IInputStateTypeInfo
 {
     public FourCC format => new FourCC('H', 'I', 'D');
@@ -63,7 +63,6 @@ struct BeitongAndroidModeInputReport : IInputStateTypeInfo
     
 }
 
-
 // Using InputControlLayoutAttribute, we tell the system about the state
 // struct we created, which includes where to find all the InputControl
 // attributes that we placed on there. This is how the Input System knows-
@@ -81,12 +80,11 @@ public class BeitongAndroidGamePad : Gamepad
                 .WithInterface("HID")
                 .WithCapability("vendorId", 0x20BC) 
                 .WithCapability("productId", 0x5053)
-                .WithCapability("usagePage", 0x1)
+                .WithCapability("usage", 5)
+                .WithCapability("usagePage", 1)
             ); 
     }
-
-    // In the Player, to trigger the calling of the static constructor,
-    // create an empty method annotated with RuntimeInitializeOnLoadMethod.
+    
     [RuntimeInitializeOnLoadMethod]
     static void Init() {}
 }
