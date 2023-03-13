@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+#if UNITY_ANDROID
 using UnityEngine.InputSystem.Android;
+#endif
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.XInput;
 
@@ -250,10 +252,12 @@ namespace Reborn.XboxController
                 {
                     _xinputs.Add((BeitongAndroidGamePad)inputDevice);
                 }
+#if UNITY_ANDROID
                 else if (inputDevice is AndroidGamepad)
                 {
                     _xinputs.Add((AndroidGamepad)inputDevice);
                 }
+#endif
             }
 
             //移除控制器，但是不打乱控制器顺序
